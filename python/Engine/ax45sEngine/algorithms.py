@@ -40,7 +40,16 @@ def keyComplier(fn):
         cache.clear()
     return rtry,a
 
+def trans(text):
+    source = "şçöğüıŞÇÖĞÜİ"
+    target = "scoguiSCOGUI"
+    translate_board = str.maketrans(source, target)
+    return text.translate(translate_board)
+
 def axen(text,keyNumber):
+    text = trans(text)
     return axen_algorithm(axen_algorithm(text,keyNumber),keyNumber)
+
 def axde(text,keyNumber):
+    text = trans(text)
     return axde_algorithm(axde_algorithm(text,keyNumber),keyNumber)
