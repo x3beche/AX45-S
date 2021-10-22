@@ -2,7 +2,7 @@ from random import randint
 from json import dump
 
 # entering values
-key, data, regularKey, randomFileNumber = {}, {}, [[],[]], randint(1,10**4)
+key, json_data, regularKey, randomFileNumber = {}, {}, [[],[]], randint(1,10**4)
 
 # this function generating numbers in random order in the range from 1 to 94
 def randomNumbers():
@@ -22,8 +22,8 @@ for x in range(1,95):
         if x==irregularKey[1][y]: regularKey[1].append(x), regularKey[0].append(irregularKey[0][y])
 
 # arranging data in dictionary type
-for a in range(0,94): key.update({regularKey[1][a]:regularKey[0][a]})
-data.update({"algorithm":"AX45-S","layer":1,"key":key})
+for x in range(0,94): key.update({regularKey[1][x]:regularKey[0][x]})
+json_data.update({"algorithm":"AX45-S","layer":1,"key":key})
 
 # saving data in json format to file with .ax extension
-with open("operationFiles/key"+str(randomFileNumber)+".ax","w",encoding="UTF-8") as file: dump(data,file,ensure_ascii=False,indent=2)
+with open("key"+str(randomFileNumber)+".ax","w",encoding="UTF-8") as file: dump(json_data,file,ensure_ascii=False,indent=2)
