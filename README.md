@@ -3,7 +3,7 @@ Is a crypto system that uses only its own unique algorithms that do not use any 
 
 Operating instructions link : [blog page](https://x3beche.github.io/2021/06/20/ax45-s-operating-instructions) & [youtube](https://www.youtube.com/watch?v=yr3QCsp1Qq4)
 
-Note: Only ASCII characters (shown in the table of key cluster below) are supported.
+Update 02.11.2021 -> Now all languages are supported.
 <p>&nbsp;</p>
 <p align="center">
 <img width="1022" height="602" src="https://raw.githubusercontent.com/x3beche/AX45-S/master/pdfDocuments/algoritma.png">

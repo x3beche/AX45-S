@@ -1,4 +1,4 @@
-from json import load
+from json import load,dumps,loads
 
 def f_encrypt(oW,nW,rtry):
     own,nwn=int(rtry[0][rtry[1].index(oW)]),int(rtry[0][rtry[1].index(nW)])
@@ -38,20 +38,12 @@ def keyComplier(fileNumber):
             return keyList, [keyList[0][0],keyList[1][0]]
         else:print("This key file is not compatible with this encryption")
     except:print("Wrong key format!")
-    
-def trans(text):
-    source = "şçöğüıŞÇÖĞÜİ"
-    target = "scoguiSCOGUI"
-    translate_board = str.maketrans(source, target)
-    return text.translate(translate_board)
 
 def axen(text,keyNumber):
-    text = trans(text)
-    return axen_algorithm(axen_algorithm(text,keyNumber),keyNumber)
+    return axen_algorithm(axen_algorithm(dumps({"data":text})[10:len(dumps({"data":text}))-2],keyNumber),keyNumber)
 
 def axde(text,keyNumber):
-    text = trans(text)
-    return axde_algorithm(axde_algorithm(text,keyNumber),keyNumber)
+    return loads('{"data": "'+axde_algorithm(axde_algorithm(text,keyNumber),keyNumber)+'"}')["data"]
 
 def keyAnalyzer(fileNumber):
     fileName ='key'+str(fileNumber)+'.ax'
