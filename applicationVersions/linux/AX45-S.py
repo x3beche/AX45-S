@@ -83,7 +83,7 @@ class Ui_AX45S(object):
                     if entry.name.rsplit(".")[-1] == "axen" and len(entry.name.split("."))>=3: files.append(entry.name)
                 return files
             elif direction == "KEY":
-                for entry in entries:
+                for entry in entries: 
                     if entry.name.rsplit(".")[-1] == "ax" and len(entry.name.split("."))==2 :files.append(int(entry.name.replace("key","").split(".")[0]))
                 return files
             else: return "Wrong direction!"
@@ -97,7 +97,7 @@ class Ui_AX45S(object):
         return True
     def fileDE(self, fileInput,keynum):
         try:
-            with open(fileInput,"r") as file: data = file.read()
+            with open(fileInput,"r") as file: data = file.read() 
         except: return False
         try:
             with open(fileInput.rsplit(".",1)[0],"wb") as file: file.write(b64decode(self.axde(data,keynum)))
@@ -136,7 +136,6 @@ class Ui_AX45S(object):
         AX45S.setWindowIcon(QtGui.QIcon("files/ax.ico"))
         AX45S.setFixedSize(662, 419)
         with open("files/theme.qss",'r') as f: AX45S.setStyleSheet(f.read())
-
         # Widgets
         self.KeySector = QtWidgets.QGroupBox(AX45S)
         self.KeySector.setGeometry(QtCore.QRect(460, 20, 191, 391))
@@ -243,7 +242,7 @@ class Ui_AX45S(object):
         self.success_color = "#FF4CAF50"
         self.programInit()
     def logger(self,msg,status):
-        if status == "INFO": self.logTextEdit.insertHtml(f'<font color={self.info_color}><strong>INFO :: </strong></font><font color="white">{msg}</font><br>')
+        if status ==      "INFO": self.logTextEdit.insertHtml(f'<font color={self.info_color}   ><strong>INFO :: </strong></font><font color="white">{msg}</font><br>')
         elif status == "WARNING": self.logTextEdit.insertHtml(f'<font color={self.warning_color}><strong>WARNING :: </strong></font><font color="white">{msg}</font><br>')
         elif status == "SUCCESS": self.logTextEdit.insertHtml(f'<font color={self.success_color}><strong>SUCCESS :: </strong></font><font color="white">{msg}</font><br>')
         self.logTextEdit.verticalScrollBar().setValue(self.logTextEdit.verticalScrollBar().maximum())
@@ -268,7 +267,7 @@ class Ui_AX45S(object):
         self.keySelectionBox.currentTextChanged.connect(self.keyInfoMeta)
         self.keyScan.clicked.connect(self.keyLister)
         self.generateKey.clicked.connect(self.generateKeyFunc)
-
+        
         # encryption & decryption algorithms
         self.encryptTextInput.textChanged.connect(self.encryptTextButton)
         self.decryptTextInput.textChanged.connect(self.decryptTextButton)
@@ -277,17 +276,17 @@ class Ui_AX45S(object):
         self.encryptFile.clicked.connect(self.encryptFileFunc)
         self.decryptFile.clicked.connect(self.decryptFileFunc)
         self.fileScanner.clicked.connect(self.fileListerFunc)
-        self.fileSelecter.currentTextChanged.connect(self.fileOperationCheck)
+        self.fileSelecter.currentTextChanged.connect(self.fileOperationCheck)  
     def encryptTextButton(self):
         if self.encryptTextInput.toPlainText() == "": self.encryptText.setEnabled(False)
-        else :
+        else : 
             if self.encryptText.isEnabled()==False: self.encryptText.setEnabled(True)
     def decryptTextButton(self):
         if self.decryptTextInput.toPlainText() == "": self.decryptText.setEnabled(False)
-        else :
+        else : 
             if self.decryptText.isEnabled()==False: self.decryptText.setEnabled(True)
     def keyLister(self):
-        self.keySelectionBox.clear()
+        self.keySelectionBox.clear()   
         for i,key in enumerate(self.fileLister("KEY")):
             self.keySelectionBox.addItem("")
             self.keySelectionBox.setItemText(i, "key"+str(key)+".ax")
@@ -300,10 +299,10 @@ class Ui_AX45S(object):
         self.fileSelecter.clear()
         for i,file_name in enumerate(self.fileLister("EN")+self.fileLister("DE")):
             self.fileSelecter.addItem("")
-            self.fileSelecter.setItemText(i, file_name)
+            self.fileSelecter.setItemText(i, file_name)  
     def keyInfoMeta(self):
         if self.text_tab.isEnabled() and self.file_tab.isEnabled() : pass
-        else:
+        else: 
             self.text_tab.setEnabled(True)
             self.file_tab.setEnabled(True)
         if self.keySelectionBox.currentText() != "":
@@ -317,19 +316,23 @@ class Ui_AX45S(object):
             try:
                 data = self.axen(self.encryptTextInput.toPlainText(), self.keyNumber)
                 self.decryptTextInput.setPlainText(data)
-            except:
+            except: 
                 self.decryptTextInput.setPlainText("")
                 self.logger(f"Text and key didn't match for encryption.", "WARNING")
-                self.alert("Warning", "Text and key didn't match for encryption, disagreement determined.")
+                self.step, self.total = 0, 100
+                self.progressBarUpdate()
+                self.alert("Warning", "Text and key didn't match for encryption, disagreement determined.") 
     def decryptTextFunc(self):
         if self.decryptTextInput.toPlainText() != "":
             try:
                 data = self.axde(self.decryptTextInput.toPlainText(), self.keyNumber)
                 self.encryptTextInput.setPlainText(data)
-            except:
+            except: 
                 self.encryptTextInput.setPlainText("")
                 self.logger(f"Text and key didn't match for decryption.", "WARNING")
-                self.alert("Warning", "Text and key didn't match for decryption, disagreement determined.")
+                self.step, self.total = 0, 100
+                self.progressBarUpdate()
+                self.alert("Warning", "Text and key didn't match for decryption, disagreement determined.")  
     def encryptFileFunc(self):
         file_name = self.fileSelecter.currentText()
         if file_name != "":
@@ -338,7 +341,9 @@ class Ui_AX45S(object):
                 self.logger(f"{file_name}.axen created.", "SUCCESS")
             else:
                 self.logger(f"{file_name} and key didn't match for encryption.", "WARNING")
-                self.alert("Warning", f"{file_name} and key didn't match for encryption, disagreement determined.")
+                self.step, self.total = 0, 100
+                self.progressBarUpdate()
+                self.alert("Warning", f"{file_name} and key didn't match for encryption, disagreement determined.")         
     def decryptFileFunc(self):
         file_name = self.fileSelecter.currentText()
         if file_name != "":
@@ -348,6 +353,8 @@ class Ui_AX45S(object):
                 self.logger(f"{nf} created.", "SUCCESS")
             else:
                 self.logger(f"{file_name} and key didn't match for decryption.", "WARNING")
+                self.step, self.total = 0, 100
+                self.progressBarUpdate()
                 self.alert("Warning", f"{file_name} and key didn't match for decryption, disagreement determined.")
     def generateKeyFunc(self):
         file_name = self.keyGeneration()
