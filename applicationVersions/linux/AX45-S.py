@@ -295,7 +295,7 @@ class Ui_AX45S(object):
         self.file_tab.setEnabled(False)
         self.keyMainInfo.setText("")
         self.keyElements.setText("Select a key in the key selection section.")
-        if self.startup_msg == False: self.logger("INFO :: Key scanning is complete, please select a key in the key selection section for using the text and file operation tabs.", "INFO")
+        if self.startup_msg == False: self.logger("Key scanning is complete, please select a key in the key selection section for using the text and file operation tabs.", "INFO")
     def fileListerFunc(self):
         self.fileSelecter.clear()
         for i,file_name in enumerate(self.fileLister("EN")+self.fileLister("DE")):
