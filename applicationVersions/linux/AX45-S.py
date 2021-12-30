@@ -237,6 +237,7 @@ class Ui_AX45S(object):
         self.generateKey.setText(_translate("AX45S", "Generate Key"))
         self.mainTab.setTabText(self.mainTab.indexOf(self.key_tab), _translate("AX45S", "Key Generation"))
         self.mainTab.setEnabled(True)
+        self.logTextEdit.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
         self.info_color = "#FFD801"
         self.warning_color = "#ED2939"
         self.success_color = "#FF4CAF50"
