@@ -6,5 +6,10 @@ Application version operating instructions link : [youtube](https://www.youtube.
 
 <p>&nbsp;</p>
 <p align="center">
-<img width="1022" height="602" src="https://raw.githubusercontent.com/x3beche/AX45-S/master/pdfDocuments/algoritma.png">
+   <br>
+   <br>
+   
+  # AX45-S GUI Version
+  <img src="https://raw.githubusercontent.com/x3beche/AX45-S/main/pdfDocuments/AX45-S-GUI.png" width="600" title="AX45-S GUI Version">
+  
 </p>
