@@ -5,11 +5,11 @@ Terminal version operating instructions link :    [youtube](https://www.youtube.
 Application version operating instructions link : [youtube](https://www.youtube.com/watch?v=TZ-Vz8xn3-E)
 
 <p>&nbsp;</p>
-<p align="center">
+<div align="center">  
    <br>
    <br>
    
   # AX45-S GUI Version
   <img src="https://raw.githubusercontent.com/x3beche/AX45-S/main/pdfDocuments/AX45-S-GUI.png" width="600" title="AX45-S GUI Version">
   
-</p>
+</div>
